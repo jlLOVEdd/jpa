@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.wdd.jpa">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="logAspect" class="org.wdd.jpa.aspect.LogAspect"></bean>
+
+<!--    开启注解类-->
+    <aop:aspectj-autoproxy/>
+    <aop:config>
+        <aop:pointcut id="ap1" expression="execution(* org.wdd.jpa.service.*.*(..))"/>
+        <aop:aspect id="sss" ref="logAspect" order="1">
+            <aop:after method="after" pointcut-ref="ap1"/>
+            <aop:after-returning method="afterReturn" pointcut-ref="ap1"/>
+            <aop:before method="before" pointcut-ref="ap1"/>
+        </aop:aspect>
+
+    </aop:config>
+
+</beans>
