@@ -19,6 +19,8 @@
 
 <!--    开启注解类-->
     <aop:aspectj-autoproxy/>
+
+
     <aop:config>
         <aop:pointcut id="ap1" expression="execution(* org.wdd.jpa.service.*.*(..))"/>
         <aop:aspect id="sss" ref="logAspect" order="1">

@@ -20,9 +20,12 @@ public class LogAspect {
 
     public void before(JoinPoint joinPoint){
         Object[] args = joinPoint.getArgs();
-        for (int i = 0; i < args.length; i++) {
-            logger.info("param_"+i+"----------"+args[i].toString());
-        }
+         if(args.length>0) {
+             for (int i = 0; i < args.length; i++) {
+                 Object arg = args[i];
+                 logger.info("param_" + i + "----------" + (arg == null ? "" : arg.toString()));
+             }
+         }
         logger.info("before..............................");
     }
 
