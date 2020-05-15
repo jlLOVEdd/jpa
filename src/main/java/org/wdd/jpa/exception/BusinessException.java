@@ -10,7 +10,8 @@ public class BusinessException extends RuntimeException {
 
     public enum ExceptionStatus {
 
-        SUCCESS("1","成功");
+        SUCCESS("1","成功"),
+        LOGIN_FAIL("00","登录失败");
 
         private String code;
         private String msg;

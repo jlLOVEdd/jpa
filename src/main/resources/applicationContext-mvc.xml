@@ -14,9 +14,30 @@
     <!--扫描controller-->
     <context:component-scan base-package="org.wdd.jpa.controller"/>
     <!--初始化webmvc组件-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven />
     
-<!--   <mvc:resources mapping="/static/js/**" location="/WEB-INF/static/js/"></mvc:resources>-->
-    <mvc:default-servlet-handler default-servlet-name="default"/>
+    <mvc:view-resolvers>
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/WEB-INF/view/"/>
+            <property name="suffix" value=".jsp"/>
+        </bean>
+    </mvc:view-resolvers>
+
+
+<!--    拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="org.wdd.jpa.config.intercepter.LoginIntercepter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    
+
+    
+   <mvc:resources mapping="/static/js/**" location="classpath:/static/js/"></mvc:resources>
+    <mvc:view-controller path="/" view-name="index"/>
+
+    <!--<mvc:default-servlet-handler default-servlet-name="default"/>-->
 
 </beans>
