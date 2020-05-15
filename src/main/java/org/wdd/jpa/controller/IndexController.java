@@ -56,7 +56,7 @@ public class IndexController {
     @RequestMapping(value = "/resume")
     public Resume getResume(Long id){
         if(id==null){
-            throw  new BusinessException(BusinessException.ExceptionStatus.SUCCESS);
+            throw  new BusinessException(BusinessException.ExceptionStatus.PARAM_ERROR);
         }
         return this.resumeService.selectResumeByid(id);
     }

@@ -7,6 +7,7 @@ import org.wdd.jpa.exception.BusinessException;
 import org.wdd.jpa.pojo.User;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -21,27 +22,36 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public String login(HttpServletRequest request, User user) {
         String name = user.getName();
-        String password =user.getPassword();
+        String password = user.getPassword();
         HttpSession session = request.getSession();
-        if("admin".equals(name)&&"admin".equals(password)){
-            session.setAttribute("jpa_user",user);
+        if ("admin".equals(name) && "admin".equals(password)) {
+            session.setAttribute("jpa_user", user);
             return "redirect:/main";
-        }else{
+        } else {
             return "index";
         }
     }
 
 
     @RequestMapping("/main")
-    public ModelAndView main(ModelAndView modelAndView){
+    public ModelAndView main(ModelAndView modelAndView) {
         modelAndView.setViewName("main");
         return modelAndView;
     }
 
     @RequestMapping("/index")
-    public ModelAndView index(ModelAndView modelAndView){
+    public ModelAndView index(ModelAndView modelAndView) {
         modelAndView.setViewName("index");
         return modelAndView;
+    }
+
+    @RequestMapping("/logout")
+    public String logOut(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session =request.getSession();
+        session.removeAttribute("jpa_user");
+       return "redirect:/login";
+
+
     }
 
 }

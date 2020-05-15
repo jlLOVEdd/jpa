@@ -11,6 +11,8 @@ public class BusinessException extends RuntimeException {
     public enum ExceptionStatus {
 
         SUCCESS("1","成功"),
+        PARAM_ERROR("01","参数异常"),
+        LOGOUT_ERROR("02","退出登录失败"),
         LOGIN_FAIL("00","登录失败");
 
         private String code;

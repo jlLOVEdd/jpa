@@ -6,7 +6,7 @@
     <script>
         $(function () {
 
-            $(".test").on("click",function () {
+            $(".logout").on("click",function () {
                 alert(11111111)
             });
 
@@ -31,13 +31,14 @@
     </style>
 </head>
 <body>
-<h2>Hello World!</h2>
+<h2>Hello World!</h2><input type="button" value="登出" class="logout">
 <div class="login">
     <div class="login_form" >
         <form action="login" method="post">
           <label>用户：</label>  <input type="text"  name="name"/><br>
           <label>密码：</label>  <input type="password" name="password"/><br>
             <input type="submit" value="登录" class="submit">
+
         </form>
     </div>
 </div>

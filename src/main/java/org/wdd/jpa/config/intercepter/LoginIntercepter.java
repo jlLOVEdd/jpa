@@ -21,17 +21,17 @@ public class LoginIntercepter implements HandlerInterceptor {
         User user = (User) session.getAttribute("jpa_user");
 
 
-        if("/".equals(path)||"/login".equals(path)){
-            if(user==null){
+        if ("/".equals(path) || "/login".equals(path)) {
+            if (user == null) {
                 return true;
-            }else{
+            } else {
                 response.sendRedirect("redirect:/main");
                 return false;
             }
 
         }
 
-          return true;
+        return true;
 
     }
 }
