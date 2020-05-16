@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.wdd.jpa.exception.BusinessException;
+import org.wdd.jpa.exception.ResponseResult;
 import org.wdd.jpa.pojo.Resume;
 import org.wdd.jpa.pojo.TimeLineChange;
 import org.wdd.jpa.service.ResumeService;
@@ -59,5 +60,19 @@ public class IndexController {
             throw  new BusinessException(BusinessException.ExceptionStatus.PARAM_ERROR);
         }
         return this.resumeService.selectResumeByid(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/resumes")
+    public List<Resume> getResume(){
+
+        return this.resumeService.selectResumeList();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete")
+    public ResponseResult deleteById(Long id){
+        this.resumeService.deleteById(id);
+        return new ResponseResult("1","删除成功");
     }
 }

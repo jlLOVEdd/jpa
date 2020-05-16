@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.wdd.jpa.dao.ResumeDao;
 import org.wdd.jpa.pojo.Resume;
 
+import java.util.List;
+
 /**
  * @Description ResumeService
  * @Author weidongdong
@@ -23,5 +25,13 @@ public class ResumeService {
 
     public Resume selectResumeByid(Long id){
         return resumeDao.findById(id).get();
+    }
+
+    public List<Resume> selectResumeList(){
+        return resumeDao.findAll();
+    }
+
+    public void deleteById(Long id){
+        resumeDao.deleteById(id);
     }
 }
