@@ -37,6 +37,7 @@
     
     <mvc:view-controller path="/" view-name="index"/>
 
-    <mvc:default-servlet-handler default-servlet-name="default"/>
+   <!-- <mvc:default-servlet-handler default-servlet-name="default"/>-->
+    <mvc:resources mapping="/static/**" location="static/"/>
 
 </beans>
